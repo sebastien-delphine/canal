@@ -1,7 +1,21 @@
+import { useState } from "react";
+import { SearchInput } from "./components/SearchInput";
+import { WeatherData } from "./types";
+
 function App() {
+  const [weatherData, setWeatherData] = useState<WeatherData>();
+
+  const fetchData = (location: string) => {
+    fetch(
+      `http://api.weatherapi.com/v1/current.json?key=07c39328eb134ed3add233858230602&q=${location}&aqi=no`
+    )
+      .then((response) => response.json())
+      .then((data) => setWeatherData(data));
+  };
+
   return (
     <>
-      <div>init</div>
+      <SearchInput fetchData={fetchData} />
     </>
   );
 }
