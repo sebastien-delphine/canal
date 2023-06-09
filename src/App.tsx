@@ -3,6 +3,7 @@ import { SearchInput } from "./components/SearchInput";
 import { WeatherData } from "./types";
 import { LocationInformations } from "./components/LocationInformations";
 import { LocationCurrentTime } from "./components/LocationCurrentTime";
+import { Footer } from "./components/Footer";
 
 function App() {
   const [weatherData, setWeatherData] = useState<WeatherData>();
@@ -18,10 +19,13 @@ function App() {
   return (
     <>
       <SearchInput fetchData={fetchData} />
+
       {weatherData && <LocationInformations weatherData={weatherData} />}
       {weatherData && (
         <LocationCurrentTime localtime={weatherData.location.localtime} />
       )}
+
+      <Footer />
     </>
   );
 }
