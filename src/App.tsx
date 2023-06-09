@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SearchInput } from "./components/SearchInput";
 import { WeatherData } from "./types";
 import { LocationInformations } from "./components/LocationInformations";
+import { LocationCurrentTime } from "./components/LocationCurrentTime";
 
 function App() {
   const [weatherData, setWeatherData] = useState<WeatherData>();
@@ -18,6 +19,9 @@ function App() {
     <>
       <SearchInput fetchData={fetchData} />
       {weatherData && <LocationInformations weatherData={weatherData} />}
+      {weatherData && (
+        <LocationCurrentTime localtime={weatherData.location.localtime} />
+      )}
     </>
   );
 }
